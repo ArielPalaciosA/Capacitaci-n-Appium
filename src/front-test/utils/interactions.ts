@@ -288,3 +288,95 @@ export const waitForApiOk = async (
     { timeout }
   );
 };
+
+export const getByIdAndFillIt = async (
+  page: Page,
+  id: string,
+  value: string,
+  opts?: { timeout?: number; clear?: boolean }
+) => {
+  const { timeout = 5000, clear = true } = opts ?? {};
+  const res = await runWithHealing(
+    page,
+    { css: id },
+    "fillById",
+    timeout,
+    async (loc, t) => {
+      await loc.waitFor({ state: "visible", timeout: t });
+      if (clear) await loc.fill("");
+      await loc.fill(value, { timeout: t });
+      return loc;
+    }
+  );
+  return res.locator;
+};
+
+export const getByIdAndClickIt = async (
+  page: Page,
+  id: string,
+  opts?: { timeout?: number; force?: boolean; clickDelayMs?: number }
+) => {
+  const { timeout = 8000, force = false, clickDelayMs } = opts ?? {};
+  const res = await runWithHealing(
+    page,
+    { css: id },
+    "clickById",
+    timeout,
+    async (loc, t) => {
+      await loc.waitFor({ state: "attached", timeout: t });
+      await loc.waitFor({ state: "visible", timeout: t });
+      if (clickDelayMs) await page.waitForTimeout(clickDelayMs);
+      await loc.click({ timeout: t, force });
+      return loc;
+    }
+  );
+  return res.locator;
+};
+
+export const getByXPath = (
+  page: Page,
+  xpath: string
+) => page.locator(`xpath=${xpath}`);
+
+export const getByXPathAndClickIt = async (
+  page: Page,
+  xpath: string,
+  opts?: { timeout?: number; force?: boolean; clickDelayMs?: number }
+) => {
+  const { timeout = 8000, force = false, clickDelayMs } = opts ?? {};
+  const res = await runWithHealing(
+    page,
+    { xpath },
+    "clickByXPath",
+    timeout,
+    async (loc, t) => {
+      await loc.waitFor({ state: "visible", timeout: t });
+      if (clickDelayMs) await page.waitForTimeout(clickDelayMs);
+      await loc.click({ timeout: t, force });
+      return loc;
+    }
+  );
+  return res.locator;
+};
+
+export const getByXPathAndFillIt = async (
+  page: Page,
+  xpath: string,
+  value: string,
+  opts?: { timeout?: number; clear?: boolean }
+) => {
+  const { timeout = 5000, clear = true } = opts ?? {};
+  const res = await runWithHealing(
+    page,
+    { xpath },
+    "fillByXPath",
+    timeout,
+    async (loc, t) => {
+      await loc.waitFor({ state: "visible", timeout: t });
+      if (clear) await loc.fill("");
+      await loc.fill(value, { timeout: t });
+      return loc;
+    }
+  );
+  return res.locator;
+};
