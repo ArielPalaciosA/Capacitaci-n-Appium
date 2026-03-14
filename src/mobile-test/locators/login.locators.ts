@@ -1,6 +1,6 @@
 // src/mobile-test/locators/login.locators.ts
 export const loginLocators = {
-    // Usa UIAutomator para buscar el elemento con resourceId "emailInput"
+    // Usa UIAutomator para buscar el elemento con "emailInput"
     userField: 'android=new UiSelector().resourceId("emailInput")',
     
     // Para el campo contraseña, de forma similar:
@@ -9,7 +9,7 @@ export const loginLocators = {
     // Botón de iniciar sesión; aquí usamos accessibility id
     loginButton: '~Iniciar sesión',
     
-    // Elemento de confirmación en la pantalla principal (ajustalo según tu app)
+    // Elemento de confirmación en la pantalla principal
     homeScreen: 'android=new UiSelector().textContains("credencial")'
   };
   

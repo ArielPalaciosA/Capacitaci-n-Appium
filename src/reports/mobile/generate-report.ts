@@ -1,29 +1,19 @@
-// src/reports/mobile/generate-report.ts
-
-import { generate } from 'multiple-cucumber-html-reporter';
+import reporter from 'multiple-cucumber-html-reporter';
 import { resolve } from 'path';
 
-generate({
-  // Directorio donde se encuentra el JSON generado por Cucumber
+reporter.generate({
   jsonDir: resolve(__dirname),
-  // Directorio donde se generará el HTML
   reportPath: resolve(__dirname, 'html'),
   metadata: {
-    browser: {
-      name: 'Appium',
-      version: 'N/A'
-    },
-    device: 'Android device',
-    platform: {
-      name: 'Android',
-      version: '11.0'  // Actualizá según corresponda
-    }
+    browser: { name: 'app', version: '1.0' },
+    device: 'Infinix HOT 40i',
+    platform: { name: 'Android', version: '13.0' },
   },
   customData: {
-    title: 'Información de la Ejecución',
+    title: 'Reporte Mobile',
     data: [
-      { label: 'Proyecto', value: 'k0lmena Mobile Automation' },
-      { label: 'Ejecutado', value: new Date().toLocaleString() }
-    ]
-  }
+      { label: 'Proyecto', value: 'k0lmena' },
+      { label: 'Fecha', value: new Date().toLocaleDateString() },
+    ],
+  },
 });

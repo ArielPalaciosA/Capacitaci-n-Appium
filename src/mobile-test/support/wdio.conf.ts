@@ -51,12 +51,11 @@ export const config: Options.Testrunner = {
       // --- DISPOSITIVO FÍSICO LOCAL ---
 
       platformName: 'Android',
-      'appium:deviceName': 'S25 Ultra',
-      'appium:udid': 'R5CY12AHTBH',
-      'appium:platformVersion': '11.0',
+      'appium:deviceName': 'Infinix HOT 40i',
+      'appium:udid': '112257047K003919',
+      'appium:platformVersion': '13.0',
       'appium:app': resolve(__dirname, '../apps/app.apk'),
       'appium:automationName': 'UiAutomator2',
-
 
       //
       // --- EMULADOR LOCAL ---
