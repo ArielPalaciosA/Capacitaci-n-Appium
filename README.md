@@ -1,6 +1,3 @@
-<p align="center">
-<img src="https://i.imgur.com/jrStTTp.png" width="400px">
-</p>
 
 # k0lmena Automation Framework
 
